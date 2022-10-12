@@ -1,0 +1,19 @@
+BEGIN{
+bytes = 0
+len = 0
+code = 0
+}
+{
+if (/^ptr/) {
+ len=length($3)
+ bytes = substr($3,7,len-1)
+ len = length(bytes)
+}
+if ($5 ~ -1 && /^Free/) {
+code = 0
+print substr(bytes, 0, len-1) " " code " " go
+}else if(/^Free/){
+code = 1
+print substr(bytes, 0, len-1) " " code " " go
+}
+}
