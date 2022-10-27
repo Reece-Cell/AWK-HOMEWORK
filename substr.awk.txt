@@ -1,0 +1,22 @@
+# given an input file of words, output all N letter substrings
+# of all words of length M or less (N must be provided on command line)
+# default value of M is N+100
+
+#
+BEGIN{
+size =N
+wsize=N+100
+wsize=M
+}
+{
+
+loops =(length($0))-(size-1)
+less=int(length($0)/size)
+#checking if the word matches size or if no word size was specified. Assuming -1 is never passed
+if(length($0) <= wsize || length(wsize)==0){
+        for(i = 0;i < loops; i++){
+                print(substr($0,i+1,size))
+                }
+        }
+}
+#
